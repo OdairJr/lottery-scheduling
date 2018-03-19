@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* Reset and Base settings */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+a,
+a:link,
+a:active,
+a:visited {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Reset and Base settings */
