@@ -1,3 +1,138 @@
-<p>
-  home works!
-</p>
+<!-- Painel para adicionar processos na fila -->
+<div class="panel panel-primary">
+  <div class="panel-heading">Adicionar Processos</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Nome do Processo</h4>
+        <input [(ngModel)]="formProccess.name" type="text" name="name" id="name" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <h4>Tempo</h4>
+        <input [(ngModel)]="formProccess.time" type="number" name="time" id="time" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <h4>Número de Tickets</h4>
+        <input [(ngModel)]="numberTickets" type="number" name="time" id="time" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-md-6">
+        <button (click)="addProccess()" type="button" class="btn btn-primary">Adicionar</button>
+      </div>
+      <div class="col-md-6">
+        <button (click)="onSugest()" type="button" class="btn btn-danger pull-right">Lista Sugerida</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <!-- Painel par aexibir processos na fila -->
+    <div class="panel panel-success">
+      <div class="panel-heading">Processos na Fila</div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Tempo</th>
+              <th>Tempo de Espera</th>
+              <th>Quantidade de Tickets</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let proccess of readyProccess'>
+              <td>{{ proccess.name }}</td>
+              <td>{{ proccess.time }}</td>
+              <td>{{ proccess.waiting_time }}</td>
+              <td>{{ proccess.tickets.length }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-6">
+    <!-- Painel par aexibir processos na fila -->
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        CPU
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-9">
+            <h4>
+              Status da CPU:
+              <label *ngIf='cpuStatus == 0' class="label label-danger">Stoped</label>
+              <label *ngIf='cpuStatus == 1' class="label label-success">Running</label>
+            </h4>
+          </div>
+          <div class="col-md-3">
+            <button *ngIf='cpuStatus == 0' (click)="alterCptuStatus()" class="btn btn-success">Iniciar</button>
+            <button *ngIf='cpuStatus == 1' (click)="alterCptuStatus()" class="btn btn-danger">Parar</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Tempo total executado:
+              <label>{{ timeTotal }}s</label>
+            </h4>
+          </div>
+        </div>
+
+        <ng-container *ngIf="executingProccess">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Processo em execução:
+                <label>{{ executingProccess.name }}</label>
+              </h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h4>tempo restante:
+                <label>{{ executingProccess.time }}</label>
+              </h4>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <!-- Painel par aexibir processos na executados -->
+    <div class="panel panel-primary">
+      <div class="panel-heading">Processos Executados</div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Tempo de Espera</th>
+              <th>Tempo Executado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let proccess of completeProccess'>
+              <td>{{ proccess.name }}</td>
+              <td>{{ proccess.waiting_time }}</td>
+              <td>{{ proccess.timeExecuted }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-footer">
+        <h4>Tempo médio de espera: <label>{{ totalWaitingTime.toFixed(2) }}</label></h4>
+      </div>
+    </div>
+
+  </div>
+</div>

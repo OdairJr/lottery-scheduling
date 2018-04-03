@@ -1,8 +1,15 @@
-<ng-container>
-  <mat-toolbar color="primary">
-    <span>Algoritmo de Loteria</span>
-  </mat-toolbar>
-  <div class="main-content">
-    <router-outlet></router-outlet>
+<div class="navbar navbar-default">
+  <div class="container">
+      <div class="navbar-header">
+          <a class="navbar-brand">Algoritmo de Loteria</a>
+      </div>
   </div>
-</ng-container>
+</div>
+<div class="container body-content">
+  <router-outlet></router-outlet>
+  <hr />
+  <footer>
+      <p>&copy; 2018 - FATEC PG</p>
+  </footer>
+</div>
+

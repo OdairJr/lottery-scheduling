@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -9,7 +10,10 @@ import { LayoutComponent } from './components/layout/layout.component';
 
 import { AppRoutingModule } from './routes/app.routing';
 
-import { MATERIAL_MODULES } from './shared/material/material';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 import { SERVICES } from './services/services';
 
 @NgModule({
@@ -22,7 +26,10 @@ import { SERVICES } from './services/services';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MATERIAL_MODULES
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    FormsModule
   ],
   providers: [
     SERVICES
